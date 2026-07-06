@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.routes.evidence import router as evidence_router
 from app.api.routes.matches import router as matches_router
 from app.api.routes.players import router as players_router
 from app.api.routes.sources import router as sources_router
@@ -13,6 +14,7 @@ app = FastAPI(
 app.include_router(players_router)
 app.include_router(matches_router)
 app.include_router(sources_router)
+app.include_router(evidence_router)
 
 @app.get("/health")
 def health_check():
