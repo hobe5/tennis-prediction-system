@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 
+from app.api.routes.players import router as players_router
 from app.db.session import check_database_connection
 
 app = FastAPI(
     title="Tennis Prediction System",
     version="0.1.0",
 )
+
+app.include_router(players_router)
 
 
 @app.get("/health")
