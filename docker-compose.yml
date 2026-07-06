@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    container_name: tennis_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: tennis_db
+    environment:
+      POSTGRES_USER: tennis
+      POSTGRES_PASSWORD: tennis
+      POSTGRES_DB: tennis_prediction
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
